@@ -1,0 +1,1 @@
+org.springframework.boot.EnvironmentPostProcessor=com.paraizo.mysocial.config.DotenvEnvironmentPostProcessor
