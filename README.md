@@ -6,4 +6,6 @@ Spring boot containerized with docker. Run:
 docker compose up
 ```
 
-The project needs a .env file (on the root dir)  to run.
+## Requirements: 
+- The project needs a .env file (on the root dir)  to run.
+- You'll need to create a bucket in Cloudfare R2

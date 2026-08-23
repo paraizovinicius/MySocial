@@ -33,7 +33,7 @@ public class PostImage {
     private Post post;
 
     @Column(nullable = false)
-    private String url;
+    private String storageKey;
 
     // display order within the post's carousel (0-9)
     @Column(nullable = false)
