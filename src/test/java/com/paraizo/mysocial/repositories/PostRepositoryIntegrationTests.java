@@ -4,12 +4,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Optional;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.paraizo.mysocial.TestDataUtil;
 import com.paraizo.mysocial.model.Post;
@@ -17,10 +17,11 @@ import com.paraizo.mysocial.model.User;
 import com.paraizo.mysocial.respositories.PostRepository;
 import com.paraizo.mysocial.respositories.UserRepository;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
+// each test runs in its own transaction that's rolled back afterwards, so no manual
+// cleanup or delete-ordering is needed - nothing a test creates is ever actually committed
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
+@Transactional
 public class PostRepositoryIntegrationTests {
 
     private PostRepository postRepository;
@@ -30,16 +31,6 @@ public class PostRepositoryIntegrationTests {
     public PostRepositoryIntegrationTests(PostRepository postRepository, UserRepository userRepository) {
         this.postRepository = postRepository;
         this.userRepository = userRepository;
-    }
-
-    @BeforeEach
-    public void setUp(){
-
-        // Delete first the post (which is binded to the user)
-        postRepository.deleteAll();
-
-        // then, delete the user
-        userRepository.deleteAll();
     }
 
     @Test
