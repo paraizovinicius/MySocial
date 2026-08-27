@@ -1,6 +1,7 @@
 package com.paraizo.mysocial;
 
 import com.paraizo.mysocial.model.Follow;
+import com.paraizo.mysocial.model.FollowStatus;
 import com.paraizo.mysocial.model.Post;
 import com.paraizo.mysocial.model.PostComment;
 import com.paraizo.mysocial.model.PostImage;
@@ -96,6 +97,7 @@ public final class TestDataUtil {
         return Follow.builder()
             .follower(userB)
             .following(userA)
+            .status(FollowStatus.ACCEPTED) // mocked ACCEPTED
             .build();
     }
 }
