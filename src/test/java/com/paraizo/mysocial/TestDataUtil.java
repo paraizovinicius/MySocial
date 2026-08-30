@@ -64,11 +64,32 @@ public final class TestDataUtil {
             .build();
     }
 
-    // public static PostImage createImageA(final Post post){
-    //     return PostImage.builder()
-    //         .storageKey("")
-    //         .build();
-    // }
+    // storageKey is a fake value here on purpose - repository tests only persist/read this
+    // string, they never touch the real R2 bucket (that's what R2StorageServiceTests covers,
+    // with a mocked S3Client)
+    public static PostImage createImageA(final Post post){
+        return PostImage.builder()
+            .post(post)
+            .storageKey("posts/test-image-a.jpg")
+            .position(0)
+            .build();
+    }
+
+    public static PostImage createImageB(final Post post){
+        return PostImage.builder()
+            .post(post)
+            .storageKey("posts/test-image-b.jpg")
+            .position(1)
+            .build();
+    }
+
+    public static PostImage createImageC(final Post post){
+        return PostImage.builder()
+            .post(post)
+            .storageKey("posts/test-image-c.jpg")
+            .position(2)
+            .build();
+    }
 
     public static PostLike createPostLike(final User user, final Post post){
         return PostLike.builder()
